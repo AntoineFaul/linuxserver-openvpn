@@ -17,5 +17,7 @@ if [ ! -f /usr/sbin/openvpn ] && \
     openvpn \
 fi
 
-iptables-restore < /etc/iptables/rules.v4
+cp /etc/iptables/rules.v4 /etc/iptables/rules.sed.v4
+sed -i "s/SPECIFIC_ALLOWED_OUTBOUND/$IPTABLES_EXCEPTION/g" /etc/iptables/rules.sed.v4
+iptables-restore < /etc/iptables/rules.sed.v4
 
