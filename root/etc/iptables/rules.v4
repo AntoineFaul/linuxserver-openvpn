@@ -16,7 +16,7 @@
 
 # If you are running a server on port N, and have enabled forwarding in your VPN account, you must allow inbound traffic on the VPN. You may also want to limit access to a particular IP address (a.b.c.d). There can be multiple rules, one for each permitted port and source address.
 
-#-A INPUT -i tun0 -s a.b.c.d –dport N -j ACCEPT
+#-A INPUT -i tun0 -s a.b.c.d --dport N -j ACCEPT
 -A INPUT -i tun0 -j ACCEPT
 
 
@@ -27,7 +27,7 @@
 
 # Then you allow related/established traffic, and drop everything else, without acknowledgement to peers.
 
--A INPUT -m state –state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 -A INPUT -j DROP
 
 
@@ -63,7 +63,7 @@
 
 # Then you allow related/established traffic, and drop everything else, without acknowledgement to peers.
 
--A OUTPUT -m state –state RELATED,ESTABLISHED -j ACCEPT
+-A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 -A OUTPUT -j DROP
 
 
