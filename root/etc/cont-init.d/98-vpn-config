@@ -17,4 +17,5 @@ if [ ! -f /usr/sbin/openvpn ] && \
     openvpn \
 fi
 
-chown -R root:root /root
+iptables-restore < /etc/iptables/rules.v4
+
