@@ -43,7 +43,7 @@
 
 # You need rule(s) to allow connecting to VPN server(s). You must use IP addresses. If also using Wi-Fi, add another rule, with “-o wlan0”, instead of “-o eth0”. There can be multiple rules, one for each server.
 
--A OUTPUT -o eth0 -d SPECIFIC_ALLOWED_OUTBOUND -j ACCEPT
+#-A OUTPUT -o eth0 -d SPECIFIC_ALLOWED_OUTBOUND -j ACCEPT
 
 
 # You need a rule to allow outbound traffic through the VPN tunnel.
