@@ -17,8 +17,9 @@ if [ ! -f /usr/sbin/openvpn ] && \
     openvpn \
 fi
 
+echo "before iptables"
 iptables-restore < /etc/iptables/rules.v4
-
+echo "after iptables"
 
 PROTO=$(sed -n '/proto /' /openvpn.conf | awk -F' ' '{print $2}')
 REMOTES=$(sed -n '/remote /' /openvpn.conf)
@@ -38,3 +39,5 @@ for remote in $remote; do
   echo "iptables -A OUTPUT -o eth0 -d $EXCLUSION_HOST -dport $EXCLUSION_PORT -p $EXCLUSION_PROT -j ACCEPT"
   iptables -A OUTPUT -o eth0 -d $EXCLUSION_HOST -dport $EXCLUSION_PORT -p $EXCLUSION_PROT -j ACCEPT
 done
+
+exit 
