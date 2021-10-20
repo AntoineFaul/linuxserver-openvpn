@@ -14,15 +14,15 @@ if [ ! -f /usr/sbin/openvpn ] && \
   # Alpine
   apk add --no-cache \
     iptables \
-    openvpn \
+    openvpn
 fi
 
 echo "before iptables"
 iptables-restore < /etc/iptables/rules.v4
 echo "after iptables"
 
-PROTO=$(sed -n '/proto /' /openvpn.conf | awk -F' ' '{print $2}')
-REMOTES=$(sed -n '/remote /' /openvpn.conf)
+PROTO=$(sed -n '/proto /p' /openvpn.conf | awk -F' ' '{print $2}')
+REMOTES=$(sed -n '/remote /p' /openvpn.conf)
 
 for remote in $remote; do
   EXCLUSION_HOST=$(echo $remote | awk -F:' ' '{print $2}')
