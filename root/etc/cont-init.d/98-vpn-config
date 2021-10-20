@@ -22,9 +22,8 @@ iptables-restore < /etc/iptables/rules.v4
 echo "after iptables"
 
 PROTO=$(sed -n '/proto /p' /openvpn.conf | awk -F' ' '{print $2}')
-REMOTES=$(sed -n '/remote /p' /openvpn.conf)
 
-for remote in $remote; do
+sed -n '/remote /p' /openvpn.conf | while IFS= read -r remote ; do
   EXCLUSION_HOST=$(echo $remote | awk -F:' ' '{print $2}')
   EXCLUSION_PORT=$(echo $remote | awk -F:' ' '{print $3}')
   EXCLUSION_PROT=$(echo $remote | awk -F:' ' '{print $4}')
