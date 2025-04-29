@@ -1,3 +1,20 @@
 #!/usr/bin/with-contenv bash
 
+#!/usr/bin/with-contenv bash
+
+## Ubuntu
+if [ -f /usr/bin/apt ]; then
+    echo "\
+        iptables \
+        iptables-persistent \
+        openvpn" >> /mod-repo-packages-to-install.list
+
+fi
+# Alpine
+if [ -f /sbin/apk ]; then
+    echo "\
+        iptables \
+        openvpn" >> /mod-repo-packages-to-install.list
+fi
+
 exit 
