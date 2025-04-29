@@ -1,7 +1,5 @@
 #!/usr/bin/with-contenv bash
 
-#!/usr/bin/with-contenv bash
-
 ## Ubuntu
 if [ -f /usr/bin/apt ]; then
     echo "\
@@ -9,12 +7,20 @@ if [ -f /usr/bin/apt ]; then
         iptables-persistent \
         openvpn" >> /mod-repo-packages-to-install.list
 
+  #apt-get update
+  #apt-get install --no-install-recommends -y \
+  #  iptables \
+  #  openvpn \
+  #  vim
 fi
 # Alpine
 if [ -f /sbin/apk ]; then
     echo "\
         iptables \
         openvpn" >> /mod-repo-packages-to-install.list
+  #apk add --no-cache \
+  #  iptables \
+  #  openvpn
 fi
 
 exit 
