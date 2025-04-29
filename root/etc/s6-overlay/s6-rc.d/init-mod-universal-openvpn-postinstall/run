@@ -21,7 +21,9 @@ sed -n '/remote /p' /openvpn.conf | while IFS= read -r remote ; do
   else
     EXCLUSION_HOST=$(getent hosts $EXCLUSION_HOST | awk '{print $1}')
   fi
-  iptables -I OUTPUT 3 -o eth0 -p $EXCLUSION_PROT -d $EXCLUSION_HOST --dport $EXCLUSION_PORT -j ACCEPT
+  #iptables -I OUTPUT 3 -o eth0 -p $EXCLUSION_PROT -d $EXCLUSION_HOST --dport $EXCLUSION_PORT -j ACCEPT
+  iptables -I OUTPUT 3 -o eth0 -p tcp -d $EXCLUSION_HOST --dport $EXCLUSION_PORT -j ACCEPT
+  iptables -I OUTPUT 3 -o eth0 -p udp -d $EXCLUSION_HOST --dport $EXCLUSION_PORT -j ACCEPT
 done
 
 #iptables -D OUTPUT -o eth0 -p tcp --dport 53 -j ACCEPT
